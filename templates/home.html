@@ -1,1 +1,12 @@
-// This is where the html code for home page goes
+<!--This is where the html code for home page goes -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Welcome to CLMS</h2>
+<p>Please login or create an account to continue.</p>
+
+<a href="/accounts/login/">Login</a><br><br>
+<a href="/accounts/register/">Register</a>
+{% endblock %}
+
+

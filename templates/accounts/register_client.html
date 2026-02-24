@@ -1,0 +1,18 @@
+{% extends 'auth_base.html' %}
+
+{% block content %}
+<h2>Client Registration</h2>
+
+<form>
+    <input type="text" placeholder="Full Name"><br><br>
+    <input type="email" placeholder="Email Address"><br><br>
+    <input type="text" placeholder="Phone Number"><br><br>
+    <input type="text" placeholder="Location"><br><br>
+    <input type="password" placeholder="Password"><br><br>
+
+    <button type="submit">Register</button>
+</form>
+
+<br>
+<a href="/accounts/register/">Back to Role Selection</a>
+{% endblock %}

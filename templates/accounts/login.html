@@ -1,0 +1,25 @@
+{% extends 'auth_base.html' %}
+
+
+{% block content %}
+<h2>Login</h2>
+
+<form>
+    <label>Login As:</label><br>
+    <select>
+        <option>Client</option>
+        <option>Worker</option>
+    </select><br><br>
+
+    <input type="email" placeholder="Email Address"><br><br>
+    <input type="password" placeholder="Password"><br><br>
+
+    <button type="submit">Login</button>
+</form>
+
+<br>
+
+<a href="/accounts/password-reset/">Forgot Password?</a>
+
+<p>Don't have an account? <a href="/accounts/register/">Register</a></p>
+{% endblock %}
