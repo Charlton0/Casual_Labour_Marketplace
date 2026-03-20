@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard">
+
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+<h2>Client Panel</h2>
+
+<a class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"
+   href="{% url 'client:dashboard' %}">
+<i class="fa-solid fa-gauge"></i> Dashboard
+</a>
+
+<a class="{% if request.resolver_match.url_name == 'post_job' %}active{% endif %}"
+   href="{% url 'client:post_job' %}">
+<i class="fa-solid fa-plus"></i> Post a Job
+</a>
+
+<a class="{% if request.resolver_match.url_name == 'jobs' %}active{% endif %}"
+   href="{% url 'client:jobs' %}">
+<i class="fa-solid fa-briefcase"></i> My Posted Jobs
+</a>
+
+<a class="{% if request.resolver_match.url_name == 'assigned_workers' %}active{% endif %}" href="#">
+<i class="fa-solid fa-user-check"></i> Assigned Workers
+</a>
+
+<a class="{% if request.resolver_match.url_name == 'completed_jobs' %}active{% endif %}" href="#">
+<i class="fa-solid fa-circle-check"></i> Completed Jobs
+</a>
+
+<a class="{% if request.resolver_match.url_name == 'profile' %}active{% endif %}" href="#">
+<i class="fa-solid fa-user"></i> Profile
+</a>
+
+<a href="{% url 'logout' %}">
+<i class="fa-solid fa-right-from-bracket"></i> Logout
+</a>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+
+<div class="dashboard-header">
+
+<h2>Client Dashboard</h2>
+
+<p>Welcome {{ request.user.email }}</p>
+
+</div>
+
+
+
+<!-- STATISTICS -->
+
+<div class="cards">
+
+<div class="card">
+<h3>{{ total_jobs }}</h3>
+<p>Jobs Posted</p>
+</div>
+
+<div class="card">
+<h3>{{ active_jobs }}</h3>
+<p>Active Jobs</p>
+</div>
+
+<div class="card">
+<h3>{{ completed_jobs }}</h3>
+<p>Completed Jobs</p>
+</div>
+
+</div>
+
+
+<a class="btn" href="{% url 'client:post_job' %}">Post New Job</a>
+
+
+<br><br>
+
+
+<h3>My Posted Jobs</h3>
+
+
+<table>
+
+<tr>
+<th>Title</th>
+<th>Location</th>
+<th>Pay</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+
+{% for job in jobs %}
+
+<tr>
+
+<td>{{ job.title }}</td>
+
+<td>{{ job.location }}</td>
+
+<td>{{ job.pay }}</td>
+
+<td class="status-{{ job.status|lower }}">
+{{ job.status }}
+</td>
+
+<td>
+
+{% if job.status != "Completed" %}
+
+<a class="btn" href="{% url 'client:complete_job' job.id %}">
+Mark Completed
+</a>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+<td colspan="5">You have not posted any jobs yet.</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="content-area">
+
+<div class="form-card">
+
+<h2>Post a Job</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<div class="form-group">
+<label>Job Title</label>
+<input type="text" name="title" placeholder="Enter job title" required>
+</div>
+
+<div class="form-group">
+<label>Job Description</label>
+<textarea name="description" placeholder="Describe the job..." rows="4" required></textarea>
+</div>
+
+<div class="form-group">
+<label>Pay Amount</label>
+<input type="number" name="pay" placeholder="Enter pay amount" required>
+</div>
+
+<div class="form-group">
+<label>Location</label>
+<input type="text" name="location" placeholder="Enter job location" required>
+</div>
+
+<button type="submit" class="btn-primary">Post Job</button>
+
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}

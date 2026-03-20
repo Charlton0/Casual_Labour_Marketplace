@@ -1,18 +1,26 @@
 {% extends 'auth_base.html' %}
 
 {% block content %}
+{% url 'accounts:register_client' %}
 <h2>Client Registration</h2>
 
-<form>
-    <input type="text" placeholder="Full Name"><br><br>
-    <input type="email" placeholder="Email Address"><br><br>
-    <input type="text" placeholder="Phone Number"><br><br>
-    <input type="text" placeholder="Location"><br><br>
-    <input type="password" placeholder="Password"><br><br>
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="full_name" placeholder="Full Name" required><br><br>
+
+    <input type="email" name="email" placeholder="Email Address" required><br><br>
+
+    <input type="text" name="phone_number" placeholder="Phone Number" required><br><br>
+
+    <input type="text" name="location" placeholder="Location" required><br><br>
+
+    <input type="password" name="password" placeholder="Password" required><br><br>
 
     <button type="submit">Register</button>
 </form>
 
 <br>
-<a href="/accounts/register/">Back to Role Selection</a>
+<a href="{% url 'register_role' %}">Back to Role Selection</a>
+
 {% endblock %}

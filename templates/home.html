@@ -1,12 +1,17 @@
 <!--This is where the html code for home page goes -->
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h2>Welcome to CLMS</h2>
-<p>Please login or create an account to continue.</p>
-
-<a href="/accounts/login/">Login</a><br><br>
-<a href="/accounts/register/">Register</a>
+<section class="home-hero" style="background: url('{% static "images/casual-labour.jpg" %}') center/cover no-repeat;">
+    <div class="home-overlay">
+        <div class="home-content">
+            <h1>Welcome to Casual Labour Marketplace</h1>
+            <p>
+                A trusted platform where clients find skilled workers 
+                and workers access flexible job opportunities.
+            </p>
+        </div>
+    </div>
+</section>
 {% endblock %}
-
-

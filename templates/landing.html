@@ -2,8 +2,113 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Welcome to Casual Labour Marketplace</h1>
-<p>This system connects clients with skilled workers easily.</p>
+<section class="hero">
+    <div class="hero-content">
+        <h1>Connecting Clients with Skilled Workers</h1>
+        <p>
+            Find trusted casual workers near you or offer your skills and get hired quickly.
+            Simple, Fast, & Reliable.
+        </p>
 
-<a href="/home/">Get Started</a>
+        <div class="hero-buttons">
+            <a href="/accounts/register/" class="btn">Get Started</a>
+            <a href="/accounts/login/" class="btn btn-outline">Login</a>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features">
+    <h2>Why Choose Us</h2>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>Verified Workers</h3>
+            <p>We connect you with trusted and skilled professionals in your area.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Fast Hiring</h3>
+            <p>Post a job and receive responses quickly from available workers.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Secure Platform</h3>
+            <p>Your data and interactions are protected with modern security practices.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS SECTION -->
+<section class="how-it-works">
+    <h2>How It Works</h2>
+
+    <div class="steps">
+        <div class="step">
+            <span>1</span>
+            <h3>Create an Account</h3>
+            <p>Register as a Client or Worker in just a few steps.</p>
+        </div>
+
+        <div class="step">
+            <span>2</span>
+            <h3>Post or Find Jobs</h3>
+            <p>Clients post tasks. Workers browse and apply easily.</p>
+        </div>
+
+        <div class="step">
+            <span>3</span>
+            <h3>Connect & Work</h3>
+            <p>Communicate, agree on terms, and get the job done efficiently.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section class="testimonials">
+    <h2>What Our Users Say</h2>
+
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <p>
+                "I found reliable workers within hours. The process was smooth and fast!"
+            </p>
+            <h4>- Sarah M., Client</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p>
+                "This platform helped me get consistent jobs and grow my income."
+            </p>
+            <h4>- James K., Worker</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p>
+                "Secure, easy to use, and very professional. Highly recommended."
+            </p>
+            <h4>- Linda T., Client</h4>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h3>Casual Labour Marketplace</h3>
+            <p>Connecting opportunities with skills.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/accounts/login/">Login</a>
+            <a href="/accounts/register/">Register</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Casual Labour Marketplace. All rights reserved.</p>
+    </div>
+</footer>
 {% endblock %}

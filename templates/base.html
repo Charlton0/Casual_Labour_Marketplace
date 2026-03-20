@@ -8,21 +8,38 @@
 
     {% load static %}
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 <body>
 
     <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="nav-container">
-            <h2 class="logo">CLMS</h2>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/accounts/">Login</a></li>
-                <li><a href="/accounts/">Register</a></li>
-            </ul>
+    <div class="nav-container">
+
+        <div class="nav-left">
+            <a href="{% url 'landing' %}" class="logo">CLM</a>
         </div>
-    </nav>
+
+        <div class="nav-right">
+            <a href="{% url 'home' %}">Home</a>
+
+            {% if request.path != '/' %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'accounts:register_role' %}">Register</a>
+            {% endif %}
+        </div>
+
+    </div>
+</nav>
+    <!-- <div class="navbar">
+    <div class="logo">CLM</div>
+    <div>
+       <a href="{% url 'home' %}">Home</a>
+        <a href="/accounts/login/">Login</a>
+        <a href="/accounts/register/" class="nav-btn">Register</a>
+    </div>
+</div> -->
 
     <!-- PAGE CONTENT -->
     <div class="main-content">

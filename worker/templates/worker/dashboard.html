@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>Worker Panel</h2>
+
+        <a href="{% url 'worker:worker_dashboard' %}" class="active">Dashboard</a>
+        <a href="{% url 'worker:available_jobs' %}">Available Jobs</a>
+        <a href="{% url 'worker:applied_jobs' %}">Applied Jobs</a>
+        <a href="{% url 'worker:assigned_jobs' %}">Assigned Jobs</a>
+        <a href="{% url 'worker:profile' %}">Profile</a>
+
+        <a href="{% url 'accounts:logout' %}">
+            Logout
+        </a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+        <h2>Welcome, Worker</h2>
+
+        <!-- STATS -->
+        <div class="stats-container">
+
+            <div class="stat-card">
+                <h3>Available Jobs</h3>
+                <p>{{ available_jobs_count }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Applied Jobs</h3>
+                <p>{{ applied_jobs }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Assigned Jobs</h3>
+                <p>{{ assigned_jobs }}</p>
+            </div>
+
+        </div>
+
+        <!-- RECENT JOBS TABLE -->
+        <div class="table-container">
+
+            <h3>Recently Available Jobs</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Location</th>
+                        <th>Pay (Ksh)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for job in recent_jobs %}
+                    <tr>
+                        <td>{{ job.title }}</td>
+                        <td>{{ job.location }}</td>
+                        <td>{{ job.pay }}</td>
+                        <td>
+
+                            {% if job.id in applied_job_ids %}
+                                <span style="color:gray;">Applied</span>
+                            {% else %}
+                                <form method="POST" action="{% url 'worker:apply_job' job.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="apply-btn">Apply</button>
+                                </form>
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No jobs available</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

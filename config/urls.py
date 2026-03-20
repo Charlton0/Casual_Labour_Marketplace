@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
 
+
 def landing_view(request):
     return render(request, 'landing.html')
 
@@ -33,7 +34,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('accounts/', include('accounts.urls')),
+
+  path('', include('django.contrib.auth.urls')),
+
     path('worker/', include('worker.urls')),
-    path('client/', include('client.urls')),
+    path('client/', include(('client.urls', 'client'), namespace='client')),
     path('adminpanel/', include('adminpanel.urls')),
+
 ]

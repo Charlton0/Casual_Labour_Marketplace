@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>Worker Panel</h2>
+
+        <a href="{% url 'worker:worker_dashboard' %}">Dashboard</a>
+        <a href="{% url 'worker:available_jobs' %}" class="active">Available Jobs</a>
+        <a href="{% url 'worker:applied_jobs' %}">Applied Jobs</a>
+        <a href="{% url 'worker:assigned_jobs' %}">Assigned Jobs</a>
+        <a href="{% url 'worker:profile' %}">Profile</a>
+
+        <a href="{% url 'accounts:logout' %}">Logout</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+        <h2>Available Jobs</h2>
+
+        <div class="table-container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Pay (Ksh)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for job in jobs %}
+                    <tr>
+                        <td>{{ job.title }}</td>
+                        <td>{{ job.description|truncatewords:10 }}</td>
+                        <td>{{ job.location }}</td>
+                        <td>{{ job.pay }}</td>
+
+                        <td>
+                            {% if job.id in applied_job_ids %}
+                                <span style="color:gray;">Applied</span>
+                            {% else %}
+                                <form method="POST" action="{% url 'worker:apply_job' job.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="apply-btn">Apply</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No available jobs at the moment</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
